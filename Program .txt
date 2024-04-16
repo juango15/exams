@@ -1,0 +1,57 @@
+Start
+
+	Importar random
+	Importar time
+	Importar clear_output de IPython.display
+
+	Declare Real N, intentos
+	Declare Char caracter, adivinanza, Repeat
+	Declare List opciones, matriz, fila, matriz_oculta, celda_oculta
+	Constant Real intentos = 3
+	Constant List opciones = ['1', '2', '3', 'A', 'B', 'C', '*', '+', '-']
+
+	Set fila = N
+	Function Mostrar_Celdas(celds):
+ 	 For i in N*N:
+	    For j in N[i]:
+	      Display celds[i][j], "  ")
+
+	Function Jugar():
+	  Esperar 2 segundos
+	  Limpiar la salida
+
+	  Mostrar_Celdas(celds)
+
+	  # Ocultar
+	  Set celds_oc = celds
+	  Esperar 3 segundos
+	  Limpiar la salida
+	  Esperar 2 segundos
+	  a = seleccionar aleatoriamente un número entre 0 y N-1
+	  b = seleccionar aleatoriamente un número entre 0 y N-1
+	  Set celds_oc[a][b] = "?"
+
+	  Display "Tienes 3 intentos para introducir el caracter correcto."
+	  Display "Recuerda que este puede ser: 1, 2, 3, A, B, C, *, +, -."
+	  Display "Si vas a poner una letra no olvides ponerla en mayúscula."
+	  MostrarCeldas(celds_oc)
+
+	  # Responder
+	  While inten > 0:
+	   Input R
+	    If R = celds[a][b]:
+	      Display "¡Lo lograste!"
+	      Break
+	    Else:
+	      Set inten -= 1
+	      If inten > 0:
+	        Display "Incorrecto. Te quedan", inten, "intentos."
+	      Else:
+	        Display "Te has quedado sin intentos. La respuesta era:", celds[a][b]
+
+	  Return Input("¿Quieres jugar nuevamente? (s/n): ") == "s"
+
+	While Jugar() sea verdadero:
+	  Continuar jugando
+
+End
